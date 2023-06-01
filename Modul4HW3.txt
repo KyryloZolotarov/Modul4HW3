@@ -1,0 +1,34 @@
+SELECT * FROM AdventureWorks.Sales.Customer;
+___________________________________________
+SELECT * FROM AdventureWorks.Sales.STORE
+ORDER BY NAME;
+____________________________________________
+SELECT * FROM AdventureWorks.HumanResources.Employee
+  WHERE BirthDate > '1989-09-28';
+____________________________________________
+SELECT NationalIDNumber, LoginID, JobTitle FROM AdventureWorks.HumanResources.Employee
+  WHERE LoginID LIKE '%0'
+  ORDER BY JobTitle DESC;
+____________________________________________________
+SELECT * FROM Person.Person
+    WHERE Title IS NULL
+    AND MiddleName IS NOT NULL
+    AND ModifiedDate LIKE '%2008%';
+______________________________________________________
+SELECT DISTINCT dep.Name FROM HumanResources.EmployeeDepartmentHistory edh
+  LEFT JOIN HumanResources.Department dep ON dep.DepartmentID = edh.DepartmentID
+  WHERE edh.EndDate IS NULL
+_______________________________________________________________
+SELECT TerritoryID, SUM(CommissionPct) FROM Sales.SalesPerson
+  GROUP BY TerritoryID;
+______________________________________________________________
+SELECT * FROM HumanResources.Employee
+  WHERE VacationHours = (SELECT MAX(VacationHours) FROM HumanResources.Employee);
+____________________________________________________________
+SELECT * FROM HumanResources.Employee
+  WHERE JobTitle = 'Sales Representative'
+  OR JobTitle =  'Network Administrator'
+  OR JobTitle =  'Network Manager';
+____________________________________________________________________________________________________________________
+SELECT * FROM HumanResources.Employee
+  FULL JOIN Purchasing.PurchaseOrderHeader ON HumanResources.Employee.BusinessEntityID = Purchasing.PurchaseOrderHeader.EmployeeID;
